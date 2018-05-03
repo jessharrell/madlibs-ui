@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { PuzzleComponent } from './puzzle.component';
+import { PuzzlePiece } from '../models/puzzle-piece';
 
 describe('PuzzleComponent', () => {
   let component: PuzzleComponent;
@@ -23,18 +24,27 @@ describe('PuzzleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should print content when contains string', () => {
+  it('should show content in paragraph when contains string', () => {
     const puzzleText = 'Puzzle given text';
-    component.puzzle = [puzzleText];
+
+    const puzzleStatic = new PuzzlePiece('static', puzzleText);
+    component.puzzle = [puzzleStatic];
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
-    expect(page.querySelector('p').textContent.trim()).toEqual(puzzleText);
+    const paragraph: HTMLElement = page.querySelector('p');
+    expect(paragraph.querySelector('span').textContent.trim()).toEqual(puzzleText);
   });
 
-  it('should print all content strings', () => {
-    component.puzzle = ['first', 'second'];
+  it('should show all content strings', () => {
+    const puzzleStatic = new PuzzlePiece('static', 'puzzleText');
+    component.puzzle = [puzzleStatic, puzzleStatic];
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
-    expect(page.querySelectorAll('p').length).toBe(2);
+    expect(page.querySelectorAll('span').length).toBe(2);
+  });
+
+  it('should show input when content value undefined', () => {
+    const adjInput = new PuzzlePiece('adjetive', '');
+    component.puzzle = [adjInput];
   });
 });

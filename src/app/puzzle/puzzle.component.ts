@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PuzzlePiece } from '../models/puzzle-piece';
 
 @Component({
   selector: 'app-puzzle',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PuzzleComponent implements OnInit {
   @Input()
-  public puzzle: string[] = ['junk', 'more junk'];
+  public puzzle: PuzzlePiece[] = [];
 
   constructor() { }
 
