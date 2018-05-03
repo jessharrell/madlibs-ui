@@ -1,3 +1,4 @@
 <p *ngFor='let piece of puzzle'>
-  <span>{{piece.display}}</span>
+  <span *ngIf="piece.display !== ''">{{piece.display}}</span>
+  <input *ngIf="piece.display === ''"/>
 </p>
