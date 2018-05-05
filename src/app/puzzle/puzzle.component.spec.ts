@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { PuzzleComponent } from './puzzle.component';
 import { PuzzlePiece } from '../models/puzzle-piece';
-import { DebugElement } from '@angular/core/src/debug/debug_node';
 
 describe('PuzzleComponent', () => {
   let component: PuzzleComponent;
@@ -52,4 +50,14 @@ describe('PuzzleComponent', () => {
     expect(page.querySelectorAll('input').length).toBe(1);
     expect(page.querySelectorAll('span').length).toBe(0);
   });
+
+  it('should use type as place holder when display undefined', () => {
+    const wordType = 'adjective';
+    const adjInput = new PuzzlePiece(wordType, '');
+    component.puzzle = [adjInput];
+    fixture.detectChanges();
+    const page: HTMLElement = fixture.nativeElement;
+    expect(page.querySelector('input').getAttribute('placeholder')).toBe(wordType);
+  });
+
 });
