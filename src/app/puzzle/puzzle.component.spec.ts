@@ -30,8 +30,8 @@ describe('PuzzleComponent', () => {
     component.puzzle = [puzzleStatic];
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
-    const paragraph: HTMLElement = page.querySelector('p');
-    expect(paragraph.querySelector('span').textContent.trim()).toEqual(puzzleText);
+    const puzzleSection: HTMLElement = page.querySelector('.puzzleSection');
+    expect(puzzleSection.querySelector('span').textContent.trim()).toEqual(puzzleText);
   });
 
   it('should show all content strings', () => {
@@ -39,7 +39,7 @@ describe('PuzzleComponent', () => {
     component.puzzle = [puzzleStatic, puzzleStatic];
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
-    expect(page.querySelectorAll('span').length).toBe(2);
+    expect(page.querySelectorAll('.puzzleText').length).toBe(2);
   });
 
   it('should show input instead of span when content value undefined', () => {
@@ -47,8 +47,8 @@ describe('PuzzleComponent', () => {
     component.puzzle = [adjInput];
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
-    expect(page.querySelectorAll('input').length).toBe(1);
-    expect(page.querySelectorAll('span').length).toBe(0);
+    expect(page.querySelectorAll('.puzzleInput').length).toBe(1);
+    expect(page.querySelectorAll('.puzzleText').length).toBe(0);
   });
 
   it('should use type as place holder when display undefined', () => {
@@ -57,7 +57,7 @@ describe('PuzzleComponent', () => {
     component.puzzle = [adjInput];
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
-    expect(page.querySelector('input').getAttribute('placeholder')).toBe(wordType);
+    expect(page.querySelector('.puzzleInput').getAttribute('placeholder')).toBe(wordType);
   });
 
 });
