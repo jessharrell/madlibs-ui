@@ -1,4 +1,4 @@
-<p *ngFor='let piece of puzzle'>
+<span *ngFor='let piece of puzzle'>
   <span *ngIf="piece.display !== ''">{{piece.display}}</span>
   <input *ngIf="piece.display === ''" placeholder="{{piece.type}}"/>
-</p>
+</span>
