@@ -1,6 +1,24 @@
 # MadlibsUi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+
+| Package                            |   Version |
+| -----------------------------------| ---------:|
+| @angular-devkit/architect          |   0.6.0   |
+| @angular-devkit/build-angular      |   0.6.0   |
+| @angular-devkit/build-optimizer    |   0.6.0   |
+| @angular-devkit/core               |   0.6.0   |
+| @angular-devkit/schematics         |   0.6.0   |
+| @angular/cli                       |   6.0.0   |
+| @ngtools/webpack                   |   6.0.0   |
+| @schematics/angular                |   0.6.0   |
+| @schematics/update                 |   0.6.0   |
+| rxjs                               |   5.5.10  |
+| typescript                         |   2.6.2   |
+| webpack                            |   4.6.0   |
+| node                               |   8.11.1  |
+
+
 
 ## Development server
 
