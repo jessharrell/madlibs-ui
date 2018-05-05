@@ -9,6 +9,7 @@ import {Puzzle} from '../models/puzzle';
 })
 export class SelectorComponent implements OnInit {
   public puzzles: Puzzle[];
+  public selectedPuzzle: Puzzle;
 
   constructor(private puzzleService: PuzzleService) { }
 
@@ -18,4 +19,7 @@ export class SelectorComponent implements OnInit {
     });
   }
 
+  public selectPuzzle(selectedPuzzle: Puzzle) {
+    this.selectedPuzzle = selectedPuzzle;
+  }
 }

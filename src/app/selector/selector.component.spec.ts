@@ -3,9 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {SelectorComponent} from './selector.component';
 import {PuzzleService} from '../puzzle-service.service';
 import {Puzzle} from '../models/puzzle';
-import {DomAdapter} from '@angular/platform-browser/src/dom/dom_adapter';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of'
+import 'rxjs/add/observable/of';
 
 describe('SelectorComponent', () => {
   let component: SelectorComponent;
@@ -25,8 +24,7 @@ describe('SelectorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SelectorComponent],
       providers: [{provide: PuzzleService, useFactory: getPuzzleService}]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -72,5 +70,17 @@ describe('SelectorComponent', () => {
       actualPuzzleNames.push(el.textContent.trim());
     });
     expect(actualPuzzleNames).toEqual(expectedPuzzleNames);
+  });
+
+  it('outputs single puzzle on click', () => {
+    const puzzle = new Puzzle();
+    puzzle.name = 'puzzle to select';
+    expectedPuzzles = [puzzle];
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    fixture.nativeElement.querySelector('.puzzleItem').click();
+
+    expect(component.selectedPuzzle).toBe(puzzle);
   });
 });

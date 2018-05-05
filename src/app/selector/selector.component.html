@@ -1,3 +1,3 @@
 <ul>
-  <li ngClass="puzzleItem" *ngFor="let puzzle of puzzles">{{puzzle.name}}</li>
+  <li ngClass="puzzleItem" *ngFor="let puzzle of puzzles" (click)="selectPuzzle(puzzle)">{{puzzle.name}}</li>
 </ul>
