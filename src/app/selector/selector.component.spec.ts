@@ -3,6 +3,9 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {SelectorComponent} from './selector.component';
 import {PuzzleService} from '../puzzle-service.service';
 import {Puzzle} from '../models/puzzle';
+import {DomAdapter} from '@angular/platform-browser/src/dom/dom_adapter';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of'
 
 describe('SelectorComponent', () => {
   let component: SelectorComponent;
@@ -10,12 +13,11 @@ describe('SelectorComponent', () => {
 
   let expectedPuzzles: Puzzle[] = [];
   const getPuzzleService = (): PuzzleService => {
-    const fakePuzzleService: PuzzleService = {
-      getAllPuzzles: (): Puzzle[] => {
-        return expectedPuzzles;
+    return {
+      getAllPuzzles: (): Observable<Puzzle[]> => {
+        return Observable.of(expectedPuzzles);
       }
-    };
-    return fakePuzzleService;
+    } as PuzzleService;
   };
 
   beforeEach(async(() => {
@@ -49,5 +51,26 @@ describe('SelectorComponent', () => {
     const puzzleItem: HTMLElement = puzzleList.querySelector('.puzzleItem');
     expect(puzzleItem).not.toBeNull();
     expect(puzzleItem.textContent.trim()).toBe(puzzle.name);
+  });
+
+  it('displays lists of puzzles by name', () => {
+    const puzzle1 = new Puzzle();
+    const puzzleName1 = 'First Puzzle';
+    puzzle1.name = puzzleName1;
+    const puzzle2 = new Puzzle();
+    const puzzleName2 = 'Second Puzzle';
+    puzzle2.name = puzzleName2;
+    expectedPuzzles = [puzzle1, puzzle2];
+    const expectedPuzzleNames = [puzzleName1, puzzleName2];
+
+    component.ngOnInit();
+    fixture.detectChanges();
+
+    const puzzleItems = fixture.nativeElement.querySelectorAll('.puzzleItem');
+    const actualPuzzleNames: string[] = [];
+    puzzleItems.forEach((el: HTMLElement) => {
+      actualPuzzleNames.push(el.textContent.trim());
+    });
+    expect(actualPuzzleNames).toEqual(expectedPuzzleNames);
   });
 });
