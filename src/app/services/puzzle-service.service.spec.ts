@@ -6,6 +6,9 @@ import {Puzzle} from '../models/puzzle.model';
 
 describe('PuzzleService', () => {
 
+  let service: PuzzleService;
+  let http: HttpTestingController;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -13,12 +16,17 @@ describe('PuzzleService', () => {
     });
   });
 
-  it('should be created', inject([PuzzleService], (service: PuzzleService) => {
-    expect(service).toBeTruthy();
+  beforeEach(inject([PuzzleService, HttpTestingController], (puzzleService, httpMock) => {
+    service = puzzleService;
+    http = httpMock;
   }));
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
   describe('getAllPuzzles', () => {
-    it('should return a list of puzzles', inject([PuzzleService, HttpTestingController], (service: PuzzleService, http: HttpTestingController) => {
+    it('should return a list of puzzles', () => {
       const puzzlesResponse: object = {
         data: {
           puzzles: [
@@ -39,6 +47,6 @@ describe('PuzzleService', () => {
 
       const request = http.expectOne('http://localhost:8081/puzzle');
       request.flush(puzzlesResponse);
-    }));
+    });
   });
 });
