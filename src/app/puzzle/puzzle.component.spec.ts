@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PuzzleComponent } from './puzzle.component';
-import { PuzzlePiece } from '../models/puzzle-piece';
+import { PuzzlePiece } from '../models/puzzle-piece.model';
 
 describe('PuzzleComponent', () => {
   let component: PuzzleComponent;

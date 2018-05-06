@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Puzzle} from '../models/puzzle';
+import {Puzzle} from '../models/puzzle.model';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 

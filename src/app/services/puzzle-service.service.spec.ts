@@ -2,7 +2,7 @@ import {TestBed, inject} from '@angular/core/testing';
 
 import {PuzzleService} from './puzzle-service.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {Puzzle} from '../models/puzzle';
+import {Puzzle} from '../models/puzzle.model';
 
 describe('PuzzleService', () => {
 

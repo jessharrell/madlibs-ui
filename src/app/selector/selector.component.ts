@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PuzzleService} from '../services/puzzle-service.service';
-import {Puzzle} from '../models/puzzle';
+import {Puzzle} from '../models/puzzle.model';
 
 @Component({
   selector: 'app-selector',

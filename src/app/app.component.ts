@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PuzzlePiece} from './models/puzzle-piece';
+import {PuzzlePiece} from './models/puzzle-piece.model';
 
 @Component({
   selector: 'app-root',
