@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SelectorComponent} from './selector.component';
-import {PuzzleService} from '../puzzle-service.service';
+import {PuzzleService} from '../services/puzzle-service.service';
 import {Puzzle} from '../models/puzzle';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';

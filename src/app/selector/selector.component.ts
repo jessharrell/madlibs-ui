@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PuzzleService} from '../puzzle-service.service';
+import {PuzzleService} from '../services/puzzle-service.service';
 import {Puzzle} from '../models/puzzle';
 
 @Component({
