@@ -3,6 +3,6 @@ export class PuzzlePiece {
   }
 
   static fromJSONObj(rawPiece: object) {
-    return new PuzzlePiece('foo', 'bar');
+    return new PuzzlePiece(rawPiece['type'], rawPiece['display']);
   }
 }
