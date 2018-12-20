@@ -7,7 +7,7 @@ import {PuzzlePiece} from './models/puzzle-piece';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'Default Puzzle';
   puzzleContent: PuzzlePiece[];
 
   ngOnInit(): void {
