@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
+  selectPuzzleNamed(name) {
+    element(by.cssContainingText('option', name)).click();
+  }
+
+  getPuzzleTitle() {
     return element(by.css('app-root h1')).getText();
   }
 
