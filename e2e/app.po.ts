@@ -12,4 +12,8 @@ export class AppPage {
   getAllPuzzleTexts() {
      return element.all(by.css('.puzzleText')).map(el => el.getText());
   }
+
+  getAllPuzzlePlaceholders() {
+    return element.all(by.css('.puzzleInput')).map(el => el.getAttribute('placeholder'));
+  }
 }

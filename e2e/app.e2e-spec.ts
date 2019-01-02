@@ -12,11 +12,17 @@ describe('madlibs-ui App', () => {
     expect(page.getParagraphText()).toEqual('Default');
   });
 
-
   it('should display static text of puzzle', async () => {
     page.navigateTo();
     const texts = await page.getAllPuzzleTexts();
     expect(texts.length).toEqual(1);
     expect(texts[0]).toEqual('This is only a');
+  });
+
+  it('should display dynamic placeholder in puzzle', async () => {
+    page.navigateTo();
+    const texts = await page.getAllPuzzlePlaceholders();
+    expect(texts.length).toEqual(1);
+    expect(texts[0]).toContain('noun');
   });
 });
