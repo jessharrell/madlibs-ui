@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.puzzleAPI.getPuzzle().subscribe((puzzleResource) => {
-        this.puzzleContent = puzzleResource.content;
+        this.puzzleContent = puzzleResource.puzzleContent;
     });
   }
 }

@@ -10,7 +10,7 @@ export class PuzzleAPI {
   constructor(private http: HttpClient) {}
 
   getPuzzle(): Observable<PuzzleResource> {
-    return this.http.get<PuzzleResponse>('http://localhost:3000/puzzle/default').map(response => {
+    return this.http.get<PuzzleResponse>('http://localhost:3000/puzzles/default').map(response => {
           return new PuzzleResource(response.name, response.puzzle);
     });
   }
@@ -18,5 +18,5 @@ export class PuzzleAPI {
 
 class PuzzleResponse {
   readonly name: string;
-  readonly puzzle: PuzzlePiece[];
+  readonly puzzle: any[];
 }

@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import {PuzzleComponent} from './puzzle/puzzle.component';
 import {PuzzleAPI} from './services/puzzle-api.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {PuzzlePiece} from './models/puzzle-piece';
 
 describe('AppComponent', () => {
 
@@ -37,16 +38,17 @@ describe('AppComponent', () => {
   }));
 
   it('should display static puzzle from endpoint', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-        const puzzleContent = [{type: 'static', text: 'This is a fake puzzle'}];
+        const puzzleType = 'static'
+        const puzzleText = 'This is a fake puzzle';
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
 
-        httpMock.expectOne('http://localhost:3000/puzzle/default').flush({name: 'foo', puzzle: puzzleContent});
+        httpMock.expectOne('http://localhost:3000/puzzles/default').flush({name: 'foo', puzzle: [{type: puzzleType, text: puzzleText}]});
 
         fixture.detectChanges();
         const app = fixture.debugElement.componentInstance;
 
-        expect(app.puzzleContent).toEqual(puzzleContent);
+        expect(app.puzzleContent).toEqual([new PuzzlePiece(puzzleType, puzzleText)]);
       })
   );
 });
