@@ -1,4 +1,4 @@
-import { browser, by, element } from 'protractor';
+import {browser, by, element, promise} from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -7,5 +7,9 @@ export class AppPage {
 
   getParagraphText() {
     return element(by.css('app-root h1')).getText();
+  }
+
+  getAllPuzzleTexts() {
+     return element.all(by.css('.puzzleText')).map(el => el.getText());
   }
 }

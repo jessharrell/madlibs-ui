@@ -7,8 +7,16 @@ describe('madlibs-ui App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display title of puzzle', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Default Puzzle');
+    expect(page.getParagraphText()).toEqual('Default');
+  });
+
+
+  it('should display static text of puzzle', async () => {
+    page.navigateTo();
+    const texts = await page.getAllPuzzleTexts();
+    expect(texts.length).toEqual(1);
+    expect(texts[0]).toEqual('This is only a');
   });
 });
