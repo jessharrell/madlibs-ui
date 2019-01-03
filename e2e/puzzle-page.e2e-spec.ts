@@ -14,6 +14,10 @@ describe('madlibs-ui puzzle page', () => {
     expect(page.getPuzzleTitle()).toEqual('Default');
   });
 
+  it('should hide welcome message after puzzle is selected', () => {
+    expect(page.getWelcomeMessage().isPresent()).toBeFalsy();
+  });
+
   it('should display static text of puzzle', async () => {
     const texts = await page.getAllPuzzleTexts();
     expect(texts.length).toEqual(1);

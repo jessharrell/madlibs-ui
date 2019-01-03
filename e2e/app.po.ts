@@ -26,4 +26,8 @@ export class AppPage {
   getAllPuzzlePlaceholders() {
     return element.all(by.css('.puzzleInput')).map(el => el.getAttribute('placeholder'));
   }
+
+  getWelcomeMessage() {
+    return element(by.css('#welcome'));
+  }
 }

@@ -2,8 +2,8 @@ import {TestBed, async, inject} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {PuzzleComponent} from './puzzle/puzzle.component';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {PuzzlePiece} from './models/puzzle-piece';
 import {By} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 
 describe('AppComponent', () => {
 
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
         AppComponent,
         PuzzleComponent
       ],
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule, FormsModule]
     }).compileComponents();
 
   }));
@@ -26,6 +26,7 @@ describe('AppComponent', () => {
 
   it('should display welcome message to instruct user', () => {
     const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
     const welcomeMessage = fixture.debugElement.query(By.css('#welcome')).nativeElement;
     expect(welcomeMessage.textContent).toContain('Please Select a Puzzle to Begin');
   });

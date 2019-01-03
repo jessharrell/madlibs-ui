@@ -1,7 +1,7 @@
 <div style="text-align:center">
-  <h1 id="welcome">Please Select a Puzzle to Begin</h1>
-  <select (change)="onPuzzleSelection($event.target.value)">
-    <option>Select Puzzle</option>
+  <h1 id="welcome" *ngIf="selectedPuzzle === 'Select Puzzle'">Please Select a Puzzle to Begin</h1>
+  <select [(ngModel)]="selectedPuzzle" (change)="onPuzzleSelection($event.target.value)">
+    <option id="promptingSelector">Select Puzzle</option>
     <option *ngFor="let name of puzzles" id="{{name}}_selector">{{name}}</option>
   </select>
   <h1 id="puzzleTitle">
