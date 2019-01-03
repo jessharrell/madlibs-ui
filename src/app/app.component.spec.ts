@@ -4,6 +4,7 @@ import {PuzzleComponent} from './puzzle/puzzle.component';
 import {PuzzleAPI} from './services/puzzle-api.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {PuzzlePiece} from './models/puzzle-piece';
+import {By} from '@angular/platform-browser';
 
 describe('AppComponent', () => {
 
@@ -35,6 +36,28 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Default');
+  }));
+
+  it('should display puzzle selector with puzzles from service', inject([HttpTestingController], (httpMock: HttpTestingController) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    httpMock.expectOne('http://localhost:3000/puzzles/').flush(['default', 'One', 'Dos']);
+    fixture.detectChanges();
+    const options = fixture.debugElement.query(By.css('select')).nativeElement.options;
+    expect(options.length).toEqual(4);
+    expect(options.namedItem('default')).toBeDefined();
+    expect(options.namedItem('One')).toBeDefined();
+    expect(options.namedItem('Dos')).toBeDefined();
+  }));
+
+  it('should have selector prompt regardless of service response', inject([HttpTestingController], (httpMock: HttpTestingController) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    httpMock.expectOne('http://localhost:3000/puzzles/').flush([]);
+    fixture.detectChanges();
+    const options = fixture.debugElement.query(By.css('select')).nativeElement.options;
+    expect(options.length).toEqual(1);
+    expect(options.namedItem('Select Puzzle')).toBeDefined();
   }));
 
   it('should display static puzzle from endpoint', inject([HttpTestingController], (httpMock: HttpTestingController) => {

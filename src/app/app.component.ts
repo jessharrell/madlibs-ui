@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {PuzzlePiece} from './models/puzzle-piece';
-import {Http} from '@angular/http';
 import {PuzzleAPI} from './services/puzzle-api.service';
 
 @Component({
@@ -10,13 +9,22 @@ import {PuzzleAPI} from './services/puzzle-api.service';
   providers: [PuzzleAPI],
 })
 export class AppComponent implements OnInit {
+  puzzles: string[] = ['foo'];
   title = 'Default';
   puzzleContent: PuzzlePiece[];
   constructor(private puzzleAPI: PuzzleAPI) {}
 
   ngOnInit(): void {
-    this.puzzleAPI.getPuzzle().subscribe((puzzleResource) => {
+    this.puzzleAPI.getPuzzleNames().subscribe(puzzleNames => this.puzzles = puzzleNames);
+
+    this.puzzleAPI.getPuzzle('default').subscribe((puzzleResource) => {
         this.puzzleContent = puzzleResource.puzzleContent;
+    });
+  }
+
+  onPuzzleSelection(selectedPuzzle): void {
+    this.puzzleAPI.getPuzzle(selectedPuzzle).subscribe((puzzleResource) => {
+      this.title = puzzleResource.title;
     });
   }
 }

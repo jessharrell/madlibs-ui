@@ -1,4 +1,4 @@
-import {browser, by, element, promise} from 'protractor';
+import {browser, by, element, ExpectedConditions} from 'protractor';
 
 export class AppPage {
   navigateTo() {
@@ -7,6 +7,10 @@ export class AppPage {
 
   selectPuzzleNamed(name) {
     element(by.cssContainingText('option', name)).click();
+  }
+
+  waitForPuzzleTitleToBe(expectedTitle) {
+    return browser.wait(ExpectedConditions.textToBePresentInElement(element(by.css('app-root h1')), expectedTitle), 5000);
   }
 
   getPuzzleTitle() {
