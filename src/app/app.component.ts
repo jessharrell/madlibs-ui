@@ -9,8 +9,8 @@ import {PuzzleAPI} from './services/puzzle-api.service';
   providers: [PuzzleAPI],
 })
 export class AppComponent implements OnInit {
-  puzzles: string[] = ['foo'];
-  title = 'Default';
+  puzzles: string[] = [];
+  title = '';
   puzzleContent: PuzzlePiece[];
   constructor(private puzzleAPI: PuzzleAPI) {}
 

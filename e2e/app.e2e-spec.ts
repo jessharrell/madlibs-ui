@@ -8,6 +8,10 @@ describe('madlibs-ui puzzle select', () => {
     page.navigateTo();
   });
 
+  it('does not display puzzle before user has selected one', () => {
+    expect(page.getPuzzleTitle()).toEqual('');
+  });
+
   it('selecting puzzle should cause puzzle to display', () => {
     page.selectPuzzleNamed('default');
     page.waitForPuzzleTitleToBe('Default');

@@ -5,22 +5,22 @@ describe('madlibs-ui puzzle page', () => {
 
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
+    page.selectPuzzleNamed('default');
+    page.waitForPuzzleTitleToBe('Default');
   });
 
   it('should display title of puzzle', () => {
-    page.navigateTo();
     expect(page.getPuzzleTitle()).toEqual('Default');
   });
 
   it('should display static text of puzzle', async () => {
-    page.navigateTo();
     const texts = await page.getAllPuzzleTexts();
     expect(texts.length).toEqual(1);
     expect(texts[0]).toEqual('This is only a');
   });
 
   it('should display dynamic placeholder in puzzle', async () => {
-    page.navigateTo();
     const texts = await page.getAllPuzzlePlaceholders();
     expect(texts.length).toEqual(1);
     expect(texts[0]).toContain('noun');

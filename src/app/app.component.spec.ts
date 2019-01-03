@@ -25,17 +25,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app'`, async(() => {
+  it(`should have as title '' before user interacts`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Default');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Default');
+    expect(app.title).toEqual('');
   }));
 
   it('should display puzzle selector with puzzles from service', inject([HttpTestingController], (httpMock: HttpTestingController) => {
@@ -45,9 +38,9 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const options = fixture.debugElement.query(By.css('select')).nativeElement.options;
     expect(options.length).toEqual(4);
-    expect(options.namedItem('default')).toBeDefined();
-    expect(options.namedItem('One')).toBeDefined();
-    expect(options.namedItem('Dos')).toBeDefined();
+    expect(options.namedItem('default' + '_selector')).not.toBeNull();
+    expect(options.namedItem('One' + '_selector')).not.toBeNull();
+    expect(options.namedItem('Dos' + '_selector')).not.toBeNull();
   }));
 
   it('should have selector prompt regardless of service response', inject([HttpTestingController], (httpMock: HttpTestingController) => {

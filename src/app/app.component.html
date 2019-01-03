@@ -1,7 +1,7 @@
 <div style="text-align:center">
   <select (change)="onPuzzleSelection($event.target.value)">
     <option>Select Puzzle</option>
-    <option *ngFor="let name of puzzles">{{name}}</option>
+    <option *ngFor="let name of puzzles" id="{{name}}_selector">{{name}}</option>
   </select>
   <h1>
     {{title}}
