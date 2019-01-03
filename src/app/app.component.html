@@ -1,9 +1,10 @@
 <div style="text-align:center">
+  <h1 id="welcome">Please Select a Puzzle to Begin</h1>
   <select (change)="onPuzzleSelection($event.target.value)">
     <option>Select Puzzle</option>
     <option *ngFor="let name of puzzles" id="{{name}}_selector">{{name}}</option>
   </select>
-  <h1>
+  <h1 id="puzzleTitle">
     {{title}}
   </h1>
   <app-puzzle [puzzle]="puzzleContent"></app-puzzle>

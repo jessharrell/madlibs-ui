@@ -1,6 +1,8 @@
 import {browser, by, element, ExpectedConditions} from 'protractor';
 
 export class AppPage {
+  private readonly puzzleTitleFinder = element(by.css('#puzzleTitle'));
+
   navigateTo() {
     return browser.get('/');
   }
@@ -10,11 +12,11 @@ export class AppPage {
   }
 
   waitForPuzzleTitleToBe(expectedTitle) {
-    return browser.wait(ExpectedConditions.textToBePresentInElement(element(by.css('app-root h1')), expectedTitle), 5000);
+    return browser.wait(ExpectedConditions.textToBePresentInElement(this.puzzleTitleFinder, expectedTitle), 5000);
   }
 
   getPuzzleTitle() {
-    return element(by.css('app-root h1')).getText();
+    return this.puzzleTitleFinder.getText();
   }
 
   getAllPuzzleTexts() {
