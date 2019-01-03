@@ -1,7 +1,6 @@
 import {TestBed, async, inject} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {PuzzleComponent} from './puzzle/puzzle.component';
-import {PuzzleAPI} from './services/puzzle-api.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {PuzzlePiece} from './models/puzzle-piece';
 import {By} from '@angular/platform-browser';
@@ -52,33 +51,4 @@ describe('AppComponent', () => {
     expect(options.length).toEqual(1);
     expect(options.namedItem('Select Puzzle')).toBeDefined();
   }));
-
-  it('should display static puzzle from endpoint', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-        const puzzleType = 'static';
-        const puzzleText = 'This is a fake puzzle';
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
-
-        httpMock.expectOne('http://localhost:3000/puzzles/default').flush({name: 'foo', puzzle: [{type: puzzleType, text: puzzleText}]});
-
-        fixture.detectChanges();
-        const app = fixture.debugElement.componentInstance;
-
-        expect(app.puzzleContent).toEqual([new PuzzlePiece(puzzleType, puzzleText)]);
-      })
-  );
-
-  it('should display noun input in puzzle', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      const puzzleType = 'noun';
-      const fixture = TestBed.createComponent(AppComponent);
-      fixture.detectChanges();
-
-      httpMock.expectOne('http://localhost:3000/puzzles/default').flush({name: 'foo', puzzle: [{type: puzzleType, text: ''}]});
-
-      fixture.detectChanges();
-      const app = fixture.debugElement.componentInstance;
-
-      expect(app.puzzleContent).toEqual([new PuzzlePiece(puzzleType, '')]);
-    })
-  );
 });

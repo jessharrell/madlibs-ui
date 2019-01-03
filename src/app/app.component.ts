@@ -16,15 +16,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.puzzleAPI.getPuzzleNames().subscribe(puzzleNames => this.puzzles = puzzleNames);
-
-    this.puzzleAPI.getPuzzle('default').subscribe((puzzleResource) => {
-        this.puzzleContent = puzzleResource.puzzleContent;
-    });
   }
 
   onPuzzleSelection(selectedPuzzle): void {
     this.puzzleAPI.getPuzzle(selectedPuzzle).subscribe((puzzleResource) => {
       this.title = puzzleResource.title;
+      this.puzzleContent = puzzleResource.puzzleContent;
     });
   }
 }
