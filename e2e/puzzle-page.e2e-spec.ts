@@ -10,7 +10,7 @@ describe('madlibs-ui puzzle page', () => {
     page.waitForPuzzleTitleToBe('Default');
   });
 
-  describe('short puzzle', () => {
+  describe('single line puzzle', () => {
     beforeEach(() => {
       page.selectPuzzleNamed('default');
       page.waitForPuzzleTitleToBe('Default');
@@ -35,9 +35,14 @@ describe('madlibs-ui puzzle page', () => {
       expect(texts.length).toEqual(1);
       expect(texts[0]).toContain('noun');
     });
+
+    it('should have single paragraph', async() => {
+      const paragraphs = await page.getAllPuzzleParagraphs();
+      expect(paragraphs.length).toEqual(1);
+    });
   });
 
-  describe('multi-line puzzle', () => {
+  describe('3 line puzzle', () => {
     beforeEach(() => {
       page.selectPuzzleNamed('seashore');
       page.waitForPuzzleTitleToBe('Sally\'s Shells');

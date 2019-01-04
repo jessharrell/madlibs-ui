@@ -23,7 +23,7 @@ describe('PuzzleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show content in paragraph when type is static', () => {
+  it('should show content in span when type is static', () => {
     const puzzleText = 'Puzzle given text';
 
     const puzzleStatic = new PuzzlePiece('static', puzzleText);
@@ -79,5 +79,4 @@ describe('PuzzleComponent', () => {
     const page: HTMLElement = fixture.nativeElement;
     expect(page.querySelector('br')).not.toBeNull();
   });
-
 });
