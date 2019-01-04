@@ -53,4 +53,16 @@ describe('madlibs-ui puzzle page', () => {
       expect(paragraphs.length).toEqual(3);
     });
   });
+
+  describe('different 3 line puzzle', () => {
+    beforeEach(() => {
+      page.selectPuzzleNamed('puppies');
+      page.waitForPuzzleTitleToBe('Puppies');
+    });
+
+    it('should have paragraph for each newline', async() => {
+      const paragraphs = await page.getAllPuzzleParagraphs();
+      expect(paragraphs.length).toEqual(3);
+    });
+  });
 });
