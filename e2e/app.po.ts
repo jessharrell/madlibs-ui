@@ -30,4 +30,8 @@ export class AppPage {
   getWelcomeMessage() {
     return element(by.css('#welcome'));
   }
+
+  getAllPuzzleParagraphs() {
+    return element.all(by.css('.puzzleParagraph'));
+  }
 }

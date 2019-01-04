@@ -1,5 +1,9 @@
-<span *ngFor="let piece of puzzle" ngClass="puzzleSection">
-  <span *ngIf="piece.type === 'static'" ngClass="puzzleText">{{piece.display}}</span>
-  <br *ngIf="piece.type === 'newline'"/>
-  <input *ngIf="piece.type !== 'static' && piece.type !== 'newline'" placeholder="{{piece.type}}" ngClass="puzzleInput"/>
-</span>
+<p class="puzzleParagraph">
+  <span *ngFor="let piece of puzzle" ngClass="puzzleSection">
+    <span *ngIf="piece.type === 'static'" ngClass="puzzleText">{{piece.display}}</span>
+    <br *ngIf="piece.type === 'newline'"/>
+    <input *ngIf="piece.type !== 'static' && piece.type !== 'newline'" placeholder="{{piece.type}}" ngClass="puzzleInput"/>
+  </span>
+</p>
+<p class="puzzleParagraph"></p>
+<p class="puzzleParagraph"></p>
