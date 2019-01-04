@@ -23,7 +23,7 @@ describe('PuzzleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show content in paragraph when contains string', () => {
+  it('should show content in paragraph when type is static', () => {
     const puzzleText = 'Puzzle given text';
 
     const puzzleStatic = new PuzzlePiece('static', puzzleText);
@@ -42,7 +42,7 @@ describe('PuzzleComponent', () => {
     expect(page.querySelectorAll('.puzzleText').length).toBe(2);
   });
 
-  it('should show input instead of span when content value undefined', () => {
+  it('should show input instead of span when type is not static or newline', () => {
     const adjInput = new PuzzlePiece('adjective', '');
     component.puzzle = [adjInput];
     fixture.detectChanges();
@@ -51,13 +51,33 @@ describe('PuzzleComponent', () => {
     expect(page.querySelectorAll('.puzzleText').length).toBe(0);
   });
 
-  it('should use type as place holder when display undefined', () => {
+  it('should show input and break when given a newline and a dynamic', () => {
+    const adjInput = new PuzzlePiece('adjective', '');
+    const newlineInput = new PuzzlePiece('newline', '');
+    component.puzzle = [adjInput, newlineInput];
+    fixture.detectChanges();
+    const page: HTMLElement = fixture.nativeElement;
+    expect(page.querySelectorAll('.puzzleInput').length).toBe(1);
+    expect(page.querySelectorAll('.puzzleText').length).toBe(0);
+    expect(page.querySelectorAll('br').length).toBe(1);
+  });
+
+  it('should use type as place holder when type is not static or newline', () => {
     const wordType = 'adjective';
     const adjInput = new PuzzlePiece(wordType, '');
     component.puzzle = [adjInput];
     fixture.detectChanges();
     const page: HTMLElement = fixture.nativeElement;
     expect(page.querySelector('.puzzleInput').getAttribute('placeholder')).toBe(wordType);
+  });
+
+  it('should add blank when type is newline', () => {
+    const wordType = 'newline';
+    const newlineInput = new PuzzlePiece(wordType, '');
+    component.puzzle = [newlineInput];
+    fixture.detectChanges();
+    const page: HTMLElement = fixture.nativeElement;
+    expect(page.querySelector('br')).not.toBeNull();
   });
 
 });

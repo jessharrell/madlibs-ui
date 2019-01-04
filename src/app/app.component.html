@@ -1,13 +1,15 @@
-<div style="text-align:center">
-  <h1 id="welcome" *ngIf="selectedPuzzle === 'Select Puzzle'">Please Select a Puzzle to Begin</h1>
-  <select [(ngModel)]="selectedPuzzle" (change)="onPuzzleSelection($event.target.value)">
-    <option id="promptingSelector">Select Puzzle</option>
-    <option *ngFor="let name of puzzles" id="{{name}}_selector">{{name}}</option>
-  </select>
-  <h1 id="puzzleTitle">
+<div class="container-fluid">
+  <span class="titleBar row justify-content-end">
+    <span class="col" id="welcome" *ngIf="selectedPuzzle === 'Select Puzzle'">Please Select a Puzzle to Begin</span>
+    <select class="col-" [(ngModel)]="selectedPuzzle" (change)="onPuzzleSelection($event.target.value)">
+      <option id="promptingSelector">Select Puzzle</option>
+      <option *ngFor="let name of puzzles" id="{{name}}_selector">{{name}}</option>
+    </select>
+  </span>
+  <h2 class="row justify-content-center" id="puzzleTitle">
     {{title}}
-  </h1>
-  <app-puzzle [puzzle]="puzzleContent"></app-puzzle>
+  </h2>
+  <app-puzzle class="row justify-content-center" [puzzle]="puzzleContent"></app-puzzle>
 </div>
 
 
