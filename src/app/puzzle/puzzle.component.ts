@@ -18,13 +18,12 @@ export class PuzzleComponent implements OnChanges {
       this.formattedPuzzle = [];
       let currPuzzle = changes.puzzle.currentValue;
       let indexOfNewline = currPuzzle.findIndex((piece) => piece.type === 'newline');
-      while (indexOfNewline > 0) {
+      while (indexOfNewline >= 0) {
         this.formattedPuzzle.push(currPuzzle.slice(0, indexOfNewline));
         currPuzzle = currPuzzle.slice(indexOfNewline + 1, currPuzzle.length);
         indexOfNewline = currPuzzle.findIndex((piece) => piece.type === 'newline');
       }
       this.formattedPuzzle.push(currPuzzle);
     }
-    // handle double newline
   }
 }

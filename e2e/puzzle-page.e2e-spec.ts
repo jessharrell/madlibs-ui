@@ -65,4 +65,16 @@ describe('madlibs-ui puzzle page', () => {
       expect(paragraphs.length).toEqual(3);
     });
   });
+
+  describe('Double new lines puzzle', () => {
+    beforeEach(() => {
+      page.selectPuzzleNamed('doubleNewLines');
+      page.waitForPuzzleTitleToBe('Double');
+    });
+
+    it('should have paragraph for each newline', async() => {
+      const paragraphs = await page.getAllPuzzleParagraphs();
+      expect(paragraphs.length).toEqual(6);
+    });
+  });
 });
