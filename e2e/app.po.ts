@@ -50,4 +50,8 @@ export class AppPage {
   savePuzzle() {
     element(by.css('#savePuzzle')).click();
   }
+
+  getPuzzleIdInput() {
+    return element(by.css('#puzzleIdInput'));
+  }
 }

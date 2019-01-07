@@ -9,8 +9,10 @@ describe('madlibs-ui initial page', () => {
     page.selectCreatePuzzle();
   });
 
-  it('should store puzzle in library when given title', () => {
+  it('should store puzzle in library when given title, id', () => {
+    page.getPuzzleIdInput().sendKeys('static');
     page.getPuzzleTitleInput().sendKeys('Static Puzzle');
     page.savePuzzle();
+    // expect(page.getAvailablePuzzleTitles()).toContain('staticPuzzle')
   });
 });
