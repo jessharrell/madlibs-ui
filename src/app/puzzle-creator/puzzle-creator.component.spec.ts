@@ -51,4 +51,13 @@ describe('PuzzleCreatorComponent', () => {
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('.dynamicInput')).length).toEqual(1);
   });
+
+  it('should add empty input container when user selects to add space', () => {
+    const createNewlineButton = fixture.debugElement.query(By.css('#createNewlineButton')).nativeElement as HTMLElement;
+    createNewlineButton.click();
+    fixture.detectChanges();
+    const allInputContainers = fixture.debugElement.queryAll(By.css('.puzzleInputContainer'));
+    expect(allInputContainers.length).toEqual(1);
+    expect(allInputContainers[0].children.length).toEqual(0);
+  });
 });
