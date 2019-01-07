@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <span class="titleBar row justify-content-end">
+    <button id="createPuzzle"></button>
     <span class="col" id="welcome" *ngIf="selectedPuzzle === 'Select Puzzle'">Please Select a Puzzle to Begin</span>
     <select class="col-" [(ngModel)]="selectedPuzzle" (change)="onPuzzleSelection($event.target.value)">
       <option id="promptingSelector">Select Puzzle</option>

@@ -34,4 +34,8 @@ export class AppPage {
   getAllPuzzleParagraphs() {
     return element.all(by.css('.puzzleParagraph'));
   }
+
+  selectCreatePuzzle() {
+    element(by.css('#createPuzzle')).click();
+  }
 }
