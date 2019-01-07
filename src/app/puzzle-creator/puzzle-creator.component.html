@@ -1,11 +1,13 @@
-<button id="createTextButton" (click)="addTextArea()">click me</button>
+<button id="createTextButton" (click)="addTextArea('static')">click me</button>
+<button id="createDynamicButton" (click)="addTextArea('dynamic')">click me</button>
 <form #puzzleCreation="ngForm" (ngSubmit)="savePuzzle(puzzleCreation.form);">
   <input id="puzzleIdInput" type="text" class="form-control" ngModel
          #nameField="ngModel" name="puzzleId">
   <input id="puzzleTitleInput" type="text" class="form-control" ngModel
          #nameField="ngModel" name="puzzleTitle">
   <div *ngFor="let piece of setOfPieces" ngClass="puzzleInputs">
-    <textarea></textarea>
+    <textarea *ngIf="piece.type === 'static'" ngClass="staticInput"></textarea>
+    <textarea *ngIf="piece.type === 'dynamic'" ngClass="dynamicInput"></textarea>
   </div>
   <button id="savePuzzle"></button>
 </form>

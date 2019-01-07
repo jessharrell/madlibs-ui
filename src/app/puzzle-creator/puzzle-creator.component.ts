@@ -20,7 +20,7 @@ export class PuzzleCreatorComponent implements OnInit {
     });
   }
 
-  addTextArea() {
-    this.setOfPieces.push({type: 'static'});
+  addTextArea(type) {
+    this.setOfPieces.push({type: type});
   }
 }

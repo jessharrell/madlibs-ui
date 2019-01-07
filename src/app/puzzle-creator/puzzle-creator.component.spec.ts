@@ -3,7 +3,6 @@ import { PuzzleCreatorComponent } from './puzzle-creator.component';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {Component} from '@angular/core';
-import {PuzzlePiece} from '../models/puzzle-piece';
 import {PuzzleAPI} from '../services/puzzle-api.service';
 import {PuzzleCreationMonitor} from '../services/puzzle-creation-monitor';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
@@ -43,6 +42,13 @@ describe('PuzzleCreatorComponent', () => {
     const createTextButton = fixture.debugElement.query(By.css('#createTextButton')).nativeElement as HTMLElement;
     createTextButton.click();
     fixture.detectChanges();
-    expect(fixture.debugElement.queryAll(By.css('textarea')).length).toEqual(1);
+    expect(fixture.debugElement.queryAll(By.css('.staticInput')).length).toEqual(1);
+  });
+
+  it('should add input when user clicks add input', () => {
+    const createDynamicButton = fixture.debugElement.query(By.css('#createDynamicButton')).nativeElement as HTMLElement;
+    createDynamicButton.click()
+    fixture.detectChanges();
+    expect(fixture.debugElement.queryAll(By.css('.dynamicInput')).length).toEqual(1);
   });
 });
