@@ -1,6 +1,6 @@
-<button id="createTextButton" (click)="addTextArea('static')">click me</button>
-<button id="createDynamicButton" (click)="addTextArea('dynamic')">click me</button>
-<button id="createNewlineButton" (click)="addTextArea('newline')">click me</button>
+<button id="createTextButton" (click)="addTextArea('static')">Add Text</button>
+<button id="createDynamicButton" (click)="addTextArea('dynamic')">Add Input</button>
+<button id="createNewlineButton" (click)="addTextArea('newline')">Add Break</button>
 <form #puzzleCreation="ngForm" (ngSubmit)="savePuzzle(puzzleCreation.form);">
   <input id="puzzleIdInput" type="text" class="form-control" ngModel
          #nameField="ngModel" name="puzzleId">
