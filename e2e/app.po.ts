@@ -44,6 +44,10 @@ export class AppPage {
   }
 
   getAllInputs() {
-    return element.all(by.css('input'))
+    return element.all(by.css('input'));
+  }
+
+  savePuzzle() {
+    element(by.css('#savePuzzle')).click();
   }
 }
