@@ -38,4 +38,8 @@ export class AppPage {
   selectCreatePuzzle() {
     element(by.css('#createPuzzle')).click();
   }
+
+  getPuzzleTitleInput() {
+    return element(by.css('#puzzleTitleInput'));
+  }
 }

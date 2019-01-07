@@ -33,8 +33,9 @@ describe('madlibs-ui initial page', () => {
   });
 
   describe('creating new puzzle', () => {
-    it('stores puzzle when user clicks save', () => {
+    it('displays creation template', () => {
       page.selectCreatePuzzle();
+      expect(page.getPuzzleTitleInput().getText()).toEqual('');
     });
   });
 });
