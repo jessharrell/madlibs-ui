@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { PuzzlePiece } from '../models/puzzle-piece';
+import {formatPuzzle} from '../services/puzzle-parser.service';
 
 @Component({
   selector: 'app-puzzle',
@@ -15,15 +16,7 @@ export class PuzzleComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.puzzle && changes.puzzle.currentValue) {
-      this.formattedPuzzle = [];
-      let currPuzzle = changes.puzzle.currentValue;
-      let indexOfNewline = currPuzzle.findIndex((piece) => piece.type === 'newline');
-      while (indexOfNewline >= 0) {
-        this.formattedPuzzle.push(currPuzzle.slice(0, indexOfNewline));
-        currPuzzle = currPuzzle.slice(indexOfNewline + 1, currPuzzle.length);
-        indexOfNewline = currPuzzle.findIndex((piece) => piece.type === 'newline');
-      }
-      this.formattedPuzzle.push(currPuzzle);
+      this.formattedPuzzle = formatPuzzle(changes.puzzle.currentValue);
     }
   }
 }
