@@ -1,4 +1,4 @@
-<div ngClass="puzzleParagraph" *ngFor="let setOfPieces of formattedPuzzle">
+<div ngClass="puzzleParagraph row d-flex justify-content-center" *ngFor="let setOfPieces of formattedPuzzle">
   <span *ngFor="let piece of setOfPieces" ngClass="puzzleSection">
     <span *ngIf="piece.type === 'static'" ngClass="puzzleText">{{piece.display}}</span>
     <input *ngIf="piece.type !== 'static' && piece.type !== 'newline'" placeholder="{{piece.type}}" ngClass="puzzleInput"/>

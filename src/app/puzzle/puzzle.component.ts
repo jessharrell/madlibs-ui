@@ -25,5 +25,6 @@ export class PuzzleComponent implements OnChanges {
       }
       this.formattedPuzzle.push(currPuzzle);
     }
+    // handle double newline
   }
 }
