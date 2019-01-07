@@ -17,6 +17,10 @@ describe('madlibs-ui initial page', () => {
     expect(page.getAllPuzzlePlaceholders()).toEqual([]);
   });
 
+  it('does not display puzzle creation form before user select create puzzle', () => {
+    expect(page.getAllInputs().count()).toEqual(0);
+  });
+
   describe('puzzle selection', () => {
 
     it('selecting puzzle should cause puzzle to display', () => {

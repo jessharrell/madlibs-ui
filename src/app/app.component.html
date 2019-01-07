@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <span class="titleBar row justify-content-end">
-    <button id="createPuzzle"></button>
+    <button id="createPuzzle" (click)="showCreator = !showCreator"></button>
     <span class="col" id="welcome" *ngIf="selectedPuzzle === 'Select Puzzle'">Please Select a Puzzle to Begin</span>
     <select class="col-" [(ngModel)]="selectedPuzzle" (change)="onPuzzleSelection($event.target.value)">
       <option id="promptingSelector">Select Puzzle</option>
@@ -10,8 +10,8 @@
   <h2 class="row justify-content-center" id="puzzleTitle">
     {{title}}
   </h2>
+  <app-puzzle-creator *ngIf="showCreator"></app-puzzle-creator>
   <app-puzzle class="col justify-content-center" [puzzle]="puzzleContent"></app-puzzle>
-  <app-puzzle-creator></app-puzzle-creator>
 </div>
 
 

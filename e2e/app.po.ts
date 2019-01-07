@@ -42,4 +42,8 @@ export class AppPage {
   getPuzzleTitleInput() {
     return element(by.css('#puzzleTitleInput'));
   }
+
+  getAllInputs() {
+    return element.all(by.css('input'))
+  }
 }

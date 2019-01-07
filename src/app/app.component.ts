@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   puzzles: string[] = [];
   title = '';
   puzzleContent: PuzzlePiece[];
+  showCreator: boolean;
   constructor(private puzzleAPI: PuzzleAPI) {}
 
   ngOnInit(): void {
