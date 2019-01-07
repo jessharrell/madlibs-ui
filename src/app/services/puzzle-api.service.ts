@@ -13,13 +13,22 @@ export class PuzzleAPI {
   }
 
   getPuzzle(puzzleId: string): Observable<PuzzleResource> {
-    return this.http.get<PuzzleResponse>('http://localhost:3000/puzzles/' + puzzleId).map(response => {
+    return this.http.get<ServerPuzzle>('http://localhost:3000/puzzles/' + puzzleId).map(response => {
           return new PuzzleResource(response.name, response.puzzle);
     });
   }
+
+  createPuzzle(puzzleId: string, puzzle: ServerPuzzle): Observable<object> {
+    return this.http.post('http://localhost:3000/puzzles/' + puzzleId, puzzle);
+  }
 }
 
-class PuzzleResponse {
-  readonly name: string;
-  readonly puzzle: any[];
+class ServerPuzzlePiece {
+  type: string;
+  text: string;
+}
+
+class ServerPuzzle {
+  name: string;
+  puzzle: ServerPuzzlePiece[];
 }

@@ -15,6 +15,10 @@ export class AppPage {
     return browser.wait(ExpectedConditions.textToBePresentInElement(this.puzzleTitleFinder, expectedTitle), 5000);
   }
 
+  waitForPuzzleSelectorToContain(expectedPuzzleId) {
+    return browser.wait(ExpectedConditions.presenceOf(element(by.css('#' + expectedPuzzleId + '_selector'))));
+  }
+
   getPuzzleTitle() {
     return this.puzzleTitleFinder.getText();
   }
@@ -53,5 +57,9 @@ export class AppPage {
 
   getPuzzleIdInput() {
     return element(by.css('#puzzleIdInput'));
+  }
+
+  getAvailablePuzzleIds() {
+    return element.all(by.css('option')).map(el => el.getText());
   }
 }

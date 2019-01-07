@@ -39,6 +39,7 @@
     "@types/node": "~6.0.60",
     "codelyzer": "^4.3.0",
     "concurrently": "^4.1.0",
+    "fs-extra": "^7.0.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
