@@ -1,7 +1,11 @@
-<form #puzzleCreation="ngForm" (ngSubmit)="savePuzzle(puzzleCreation.form);">>
+<button id="createTextButton" (click)="addTextArea()">click me</button>
+<form #puzzleCreation="ngForm" (ngSubmit)="savePuzzle(puzzleCreation.form);">
   <input id="puzzleIdInput" type="text" class="form-control" ngModel
          #nameField="ngModel" name="puzzleId">
   <input id="puzzleTitleInput" type="text" class="form-control" ngModel
          #nameField="ngModel" name="puzzleTitle">
+  <div *ngFor="let piece of setOfPieces" ngClass="puzzleInputs">
+    <textarea></textarea>
+  </div>
   <button id="savePuzzle"></button>
 </form>

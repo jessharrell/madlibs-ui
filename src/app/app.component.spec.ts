@@ -4,6 +4,7 @@ import {PuzzleComponent} from './puzzle/puzzle.component';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
+import {PuzzleCreatorComponent} from './puzzle-creator/puzzle-creator.component';
 
 describe('AppComponent', () => {
 
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        PuzzleComponent
+        PuzzleComponent,
+        PuzzleCreatorComponent
       ],
       imports: [HttpClientTestingModule, FormsModule]
     }).compileComponents();
