@@ -1,5 +1,4 @@
 import {AppPage} from './app.po';
-const fs = require('fs-extra')
 
 describe('madlibs-ui initial page', () => {
   let page: AppPage;
@@ -19,7 +18,5 @@ describe('madlibs-ui initial page', () => {
 
     page.waitForPuzzleSelectorToContain(id);
     expect(page.getAvailablePuzzleIds()).toContain(id);
-
-    await fs.remove('./test-puzzles/static');
   });
 });
