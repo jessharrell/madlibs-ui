@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
       this.title = puzzleResource.title;
       this.puzzleContent = puzzleResource.puzzleContent;
     });
+    this.showCreator = false;
   }
 
   createPuzzleTemplate() {

@@ -78,3 +78,19 @@ describe('madlibs-ui puzzle page', () => {
     });
   });
 });
+
+describe('puzzle page after create', () => {
+  let page: AppPage;
+
+  beforeEach(() => {
+    page = new AppPage();
+    page.navigateTo();
+    page.selectCreatePuzzle();
+    page.selectPuzzleNamed('default');
+    page.waitForPuzzleTitleToBe('Default');
+  });
+
+  it('hides the creator', () => {
+    expect(page.getPuzzleIdInput().isPresent()).toBeFalsy();
+  });
+});
