@@ -8,7 +8,9 @@ export function formatPuzzle(puzzle: PuzzlePiece[]): PuzzlePiece[][] {
     puzzle = puzzle.slice(indexOfNewline + 1, puzzle.length);
     indexOfNewline = puzzle.findIndex((piece) => piece.type === 'newline');
   }
-  formattedPuzzle.push(puzzle);
+  if (puzzle.length > 0) {
+    formattedPuzzle.push(puzzle);
+  }
 
   return formattedPuzzle;
 }

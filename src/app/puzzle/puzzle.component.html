@@ -1,3 +1,6 @@
+<h2 class="row justify-content-center" id="puzzleTitle">
+  {{title}}
+</h2>
 <div ngClass="puzzleParagraph row d-flex justify-content-center" *ngFor="let setOfPieces of formattedPuzzle">
   <span *ngFor="let piece of setOfPieces" ngClass="puzzleSection">
     <span *ngIf="piece.type === 'static'" ngClass="puzzleText">{{piece.display}}</span>

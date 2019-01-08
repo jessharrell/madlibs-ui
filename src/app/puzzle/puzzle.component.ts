@@ -9,6 +9,8 @@ import {formatPuzzle} from '../services/puzzle-parser.service';
 })
 export class PuzzleComponent implements OnChanges {
   @Input()
+  public title: string;
+  @Input()
   public puzzle: PuzzlePiece[];
   formattedPuzzle: PuzzlePiece[][] = [];
 

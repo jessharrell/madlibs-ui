@@ -12,9 +12,12 @@ import {PuzzleCreationMonitor} from './services/puzzle-creation-monitor';
 export class AppComponent implements OnInit {
   selectedPuzzle = 'Select Puzzle';
   puzzles: string[] = [];
+
   title = '';
   puzzleContent: PuzzlePiece[];
+
   showCreator: boolean;
+
   constructor(private puzzleAPI: PuzzleAPI, private creationMonitor: PuzzleCreationMonitor) {}
 
   ngOnInit(): void {
@@ -29,5 +32,11 @@ export class AppComponent implements OnInit {
       this.title = puzzleResource.title;
       this.puzzleContent = puzzleResource.puzzleContent;
     });
+  }
+
+  createPuzzleTemplate() {
+    this.title = '';
+    this.puzzleContent = [];
+    this.showCreator = true;
   }
 }

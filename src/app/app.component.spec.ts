@@ -44,7 +44,7 @@ describe('AppComponent', () => {
     expect(options.namedItem('Dos' + '_selector')).not.toBeNull();
   }));
 
-  it('should have selector prompt regardless of service response', inject([HttpTestingController], (httpMock: HttpTestingController) => {
+  it('should have selector prompt when service has no puzzles', inject([HttpTestingController], (httpMock: HttpTestingController) => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     httpMock.expectOne('http://localhost:3000/puzzles/').flush([]);
