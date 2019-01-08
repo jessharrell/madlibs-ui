@@ -26,13 +26,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it('should display welcome message to instruct user', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const welcomeMessage = fixture.debugElement.query(By.css('#welcome')).nativeElement;
-    expect(welcomeMessage.textContent).toContain('Please Select a Puzzle to Begin');
-  });
-
   it(`should have as title '' before user interacts`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;

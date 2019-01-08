@@ -1,8 +1,9 @@
 <div class="container-fluid">
-  <span class="titleBar row justify-content-end">
-    <button id="createPuzzle" (click)="showCreator = !showCreator"></button>
-    <span class="col" id="welcome" *ngIf="selectedPuzzle === 'Select Puzzle'">Please Select a Puzzle to Begin</span>
-    <select class="col-" [(ngModel)]="selectedPuzzle" (change)="onPuzzleSelection($event.target.value)">
+  <span class="titleBar row justify-content-center titleBarHeader">MadLibs</span>
+  <span class="titleBar row justify-content-around">
+    <button  id="createPuzzle" (click)="showCreator = !showCreator">Create New</button>
+    <span>or</span>
+    <select [(ngModel)]="selectedPuzzle" (change)="onPuzzleSelection($event.target.value)">
       <option id="promptingSelector">Select Puzzle</option>
       <option *ngFor="let name of puzzles" id="{{name}}_selector">{{name}}</option>
     </select>

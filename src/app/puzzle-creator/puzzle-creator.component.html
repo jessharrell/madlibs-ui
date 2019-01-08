@@ -1,14 +1,32 @@
-<button id="createTextButton" (click)="addTextArea('static')">Add Text</button>
-<button id="createDynamicButton" (click)="addTextArea('dynamic')">Add Input</button>
-<button id="createNewlineButton" (click)="addTextArea('newline')">Add Break</button>
+<div ngClass="row container-fluid justify-content-around">
+<button ngClass="btn btn-light" id="createTextButton" (click)="addTextArea('static')">Add Text</button>
+<button ngClass="btn btn-light" id="createDynamicButton" (click)="addTextArea('dynamic')">Add Input</button>
+<button ngClass="btn btn-light" id="createNewlineButton" (click)="addTextArea('newline')">Add Break</button>
+</div>
 <form #puzzleCreation="ngForm" (ngSubmit)="savePuzzle(puzzleCreation.form);">
-  <input id="puzzleIdInput" type="text" class="form-control" ngModel
+  <div ngClass="form-group">
+    <label>Puzzle ID</label>
+    <input id="puzzleIdInput" type="text" class="form-control" ngModel
          #nameField="ngModel" name="puzzleId">
-  <input id="puzzleTitleInput" type="text" class="form-control" ngModel
-         #nameField="ngModel" name="puzzleTitle">
-  <div *ngFor="let piece of setOfPieces" ngClass="puzzleInputContainer">
-    <textarea *ngIf="piece.type === 'static'" ngClass="staticInput"></textarea>
-    <textarea *ngIf="piece.type === 'dynamic'" ngClass="dynamicInput"></textarea>
   </div>
-  <button id="savePuzzle"></button>
+  <div ngClass="form-group">
+    <label>Puzzle Title</label>
+    <input id="puzzleTitleInput" type="text" class="form-control" ngModel
+         #nameField="ngModel" name="puzzleTitle">
+  </div>
+  <div *ngFor="let piece of setOfPieces" ngClass="puzzleInputContainer">
+    <div *ngIf="piece.type === 'static'" class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">text</span>
+      </div>
+      <input type="text" ngClass="staticInput form-control">
+    </div>
+    <div *ngIf="piece.type === 'dynamic'" class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">input</span>
+      </div>
+      <input type="text" ngClass="dynamicInput form-control">
+    </div>
+  </div>
+  <button ngClass="btn btn-primary" id="savePuzzle">SAVE</button>
 </form>
