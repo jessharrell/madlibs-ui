@@ -62,4 +62,12 @@ export class AppPage {
   getAvailablePuzzleIds() {
     return element.all(by.css('option')).map(el => el.getText());
   }
+
+  clickAddText() {
+    element(by.css('#createTextButton')).click();
+  }
+
+  getLastTextInput() {
+    return element.all(by.css('.staticInput')).last();
+  }
 }

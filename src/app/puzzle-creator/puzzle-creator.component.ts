@@ -15,7 +15,11 @@ export class PuzzleCreatorComponent implements OnInit {
   }
 
   savePuzzle(form) {
-    this.puzzleApi.createPuzzle(form.value.puzzleId, {name: form.value.puzzleTitle, puzzle: []}).subscribe(object => {
+    const puzzle = []
+    if (form.value.userValue0) {
+      puzzle.push({type: 'static', text: form.value.userValue0});
+    }
+    this.puzzleApi.createPuzzle(form.value.puzzleId, {name: form.value.puzzleTitle, puzzle: puzzle}).subscribe(object => {
       this.creationMonitor.alert();
     });
   }
