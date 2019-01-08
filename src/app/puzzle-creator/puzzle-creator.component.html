@@ -15,17 +15,17 @@
          #nameField="ngModel" name="puzzleTitle">
   </div>
   <div *ngFor="let piece of setOfPieces; let i = index" ngClass="puzzleInputContainer">
-    <div *ngIf="piece.type === 'static'" class="form-group input-group mb-3">
+    <div *ngIf="piece === 'static'" class="form-group input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">text</span>
       </div>
-      <input type="text" ngClass="staticInput form-control" ngModel #nameField="ngModel" name="userValue{{i}}">
+      <input type="text" ngClass="staticInput form-control" ngModel #nameField="ngModel" name="{{piece}}{{i}}">
     </div>
-    <div *ngIf="piece.type === 'dynamic'" class="input-group mb-3">
+    <div *ngIf="piece === 'dynamic'" class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">input</span>
       </div>
-      <input type="text" ngClass="dynamicInput form-control">
+      <input type="text" ngClass="dynamicInput form-control" ngModel #nameField="ngModel" name="{{piece}}{{i}}">
     </div>
   </div>
   <button ngClass="btn btn-primary" id="savePuzzle">SAVE</button>

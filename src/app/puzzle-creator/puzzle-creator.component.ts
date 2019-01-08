@@ -9,20 +9,20 @@ import {formToServerPuzzle} from '../services/puzzle-parser.service';
   styleUrls: ['./puzzle-creator.component.less']
 })
 export class PuzzleCreatorComponent implements OnInit {
-  setOfPieces: any[] = [];
+  setOfPieces: string[] = [];
   constructor(private readonly puzzleApi: PuzzleAPI, private creationMonitor: PuzzleCreationMonitor) { }
 
   ngOnInit() {
   }
 
   savePuzzle(form) {
-    const puzzle = formToServerPuzzle(form);
+    const puzzle = formToServerPuzzle(form, this.setOfPieces);
     this.puzzleApi.createPuzzle(form.value.puzzleId, puzzle).subscribe(object => {
       this.creationMonitor.alert();
     });
   }
 
-  addTextArea(type) {
-    this.setOfPieces.push({type: type});
+  addTextArea(type: string) {
+    this.setOfPieces.push(type);
   }
 }

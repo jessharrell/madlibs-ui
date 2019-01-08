@@ -17,10 +17,14 @@ export function formatPuzzle(puzzle: PuzzlePiece[]): PuzzlePiece[][] {
   return formattedPuzzle;
 }
 
-export function formToServerPuzzle(form: any): ServerPuzzle {
-  const puzzlePieces: ServerPuzzlePiece[] = []
-  if (form.value.userValue0) {
-    puzzlePieces.push({type: 'static', text: form.value.userValue0});
-  }
+export function formToServerPuzzle(form: any, pieceMap: string[]): ServerPuzzle {
+  const puzzlePieces: ServerPuzzlePiece[] = [];
+  pieceMap.forEach((pieceType, index) => {
+    if (pieceType === 'static' || pieceType === 'newline') {
+      puzzlePieces.push(new ServerPuzzlePiece(pieceType, form.value[pieceType + index]));
+    } else {
+      puzzlePieces.push(new ServerPuzzlePiece(form.value[pieceType + index], ''));
+    }
+  });
   return {name: form.value.puzzleTitle as string, puzzle: puzzlePieces};
 }

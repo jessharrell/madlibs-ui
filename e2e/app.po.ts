@@ -16,7 +16,7 @@ export class AppPage {
   }
 
   waitForPuzzleSelectorToContain(expectedPuzzleId) {
-    return browser.wait(ExpectedConditions.presenceOf(element(by.css('#' + expectedPuzzleId + '_selector'))));
+    return browser.wait(ExpectedConditions.presenceOf(element(by.css('#_' + expectedPuzzleId + '_selector'))));
   }
 
   getPuzzleTitle() {
@@ -67,7 +67,19 @@ export class AppPage {
     element(by.css('#createTextButton')).click();
   }
 
-  getLastTextInput() {
+  getLastStaticInput() {
     return element.all(by.css('.staticInput')).last();
+  }
+
+  getLastDynamicInput() {
+    return element.all(by.css('.dynamicInput')).last();
+  }
+
+  clickAddNewline() {
+    element(by.css('#createNewlineButton')).click();
+  }
+
+  clickAddDynamic() {
+    element(by.css('#createDynamicButton')).click();
   }
 }
