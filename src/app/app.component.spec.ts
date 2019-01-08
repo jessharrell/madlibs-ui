@@ -39,9 +39,9 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const options = fixture.debugElement.query(By.css('select')).nativeElement.options;
     expect(options.length).toEqual(4);
-    expect(options.namedItem('default' + '_selector')).not.toBeNull();
-    expect(options.namedItem('One' + '_selector')).not.toBeNull();
-    expect(options.namedItem('Dos' + '_selector')).not.toBeNull();
+    expect(options.namedItem('_default' + '_selector')).not.toBeNull();
+    expect(options.namedItem('_One' + '_selector')).not.toBeNull();
+    expect(options.namedItem('_Dos' + '_selector')).not.toBeNull();
   }));
 
   it('should have selector prompt when service has no puzzles', inject([HttpTestingController], (httpMock: HttpTestingController) => {
