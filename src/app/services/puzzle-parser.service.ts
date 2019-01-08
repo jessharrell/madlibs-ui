@@ -1,4 +1,6 @@
 import {PuzzlePiece} from '../models/puzzle-piece';
+import {ServerPuzzlePiece} from '../models/server-puzzle-piece';
+import {ServerPuzzle} from '../models/server-puzzle';
 
 export function formatPuzzle(puzzle: PuzzlePiece[]): PuzzlePiece[][] {
   const formattedPuzzle = [];
@@ -13,4 +15,12 @@ export function formatPuzzle(puzzle: PuzzlePiece[]): PuzzlePiece[][] {
   }
 
   return formattedPuzzle;
+}
+
+export function formToServerPuzzle(form: any): ServerPuzzle {
+  const puzzlePieces: ServerPuzzlePiece[] = []
+  if (form.value.userValue0) {
+    puzzlePieces.push({type: 'static', text: form.value.userValue0});
+  }
+  return {name: form.value.puzzleTitle as string, puzzle: puzzlePieces};
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PuzzleAPI} from '../services/puzzle-api.service';
 import {PuzzleCreationMonitor} from '../services/puzzle-creation-monitor';
+import {formToServerPuzzle} from '../services/puzzle-parser.service';
 
 @Component({
   selector: 'app-puzzle-creator',
@@ -15,11 +16,8 @@ export class PuzzleCreatorComponent implements OnInit {
   }
 
   savePuzzle(form) {
-    const puzzle = []
-    if (form.value.userValue0) {
-      puzzle.push({type: 'static', text: form.value.userValue0});
-    }
-    this.puzzleApi.createPuzzle(form.value.puzzleId, {name: form.value.puzzleTitle, puzzle: puzzle}).subscribe(object => {
+    const puzzle = formToServerPuzzle(form);
+    this.puzzleApi.createPuzzle(form.value.puzzleId, puzzle).subscribe(object => {
       this.creationMonitor.alert();
     });
   }

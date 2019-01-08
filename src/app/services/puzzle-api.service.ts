@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {PuzzleResource} from '../models/puzzle-resource';
 import {HttpClient} from '@angular/common/http';
+import {ServerPuzzle} from '../models/server-puzzle';
 
 @Injectable()
 export class PuzzleAPI {
@@ -21,14 +22,4 @@ export class PuzzleAPI {
   createPuzzle(puzzleId: string, puzzle: ServerPuzzle): Observable<object> {
     return this.http.post('http://localhost:3000/puzzles/' + puzzleId, puzzle);
   }
-}
-
-class ServerPuzzlePiece {
-  type: string;
-  text: string;
-}
-
-class ServerPuzzle {
-  name: string;
-  puzzle: ServerPuzzlePiece[];
 }
