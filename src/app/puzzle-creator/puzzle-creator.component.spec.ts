@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 import { PuzzleCreatorComponent } from './puzzle-creator.component';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {Component} from '@angular/core';
 import {PuzzleAPI} from '../services/puzzle-api.service';
 import {PuzzleCreationMonitor} from '../services/puzzle-creation-monitor';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {AppComponent} from '../app.component';
 
 @Component({
   template: '<app-puzzle-creator></app-puzzle-creator>',
@@ -47,7 +48,7 @@ describe('PuzzleCreatorComponent', () => {
 
   it('should add input when user clicks add input', () => {
     const createDynamicButton = fixture.debugElement.query(By.css('#createDynamicButton')).nativeElement as HTMLElement;
-    createDynamicButton.click()
+    createDynamicButton.click();
     fixture.detectChanges();
     expect(fixture.debugElement.queryAll(By.css('.dynamicInput')).length).toEqual(1);
   });

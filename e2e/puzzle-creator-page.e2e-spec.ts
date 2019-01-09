@@ -64,6 +64,36 @@ describe('madlibs-ui create new page', () => {
 
     expect(page.getAllPuzzleParagraphs().count()).toEqual(2);
   });
+
+  it('should clear puzzle input form after successful save', async() => {
+    const id = uuid4().toString();
+    page.getPuzzleIdInput().sendKeys(id);
+    const puzzleTitle = 'Static Puzzle';
+    page.getPuzzleTitleInput().sendKeys(puzzleTitle);
+
+    page.clickAddText();
+    const puzzleContent = 'Some puzzle content';
+    page.getLastStaticInput().sendKeys(puzzleContent);
+
+    page.savePuzzle();
+
+    expect(page.getPuzzleIdInput().getAttribute('value')).toEqual('');
+    expect(page.getLastStaticInput().isPresent()).toBeFalsy();
+  });
+
+  it('should not clear puzzle input form when save fails', async() => {
+    const id = uuid4().toString();
+    page.getPuzzleIdInput().sendKeys(id);
+
+    page.clickAddText();
+    const puzzleContent = 'Some puzzle content';
+    page.getLastStaticInput().sendKeys(puzzleContent);
+
+    page.savePuzzle();
+
+    expect(page.getPuzzleIdInput().getAttribute('value')).toEqual(id);
+    expect(page.getLastStaticInput().getAttribute('value')).toEqual(puzzleContent);
+  });
 });
 
 

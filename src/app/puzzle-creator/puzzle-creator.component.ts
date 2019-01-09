@@ -19,6 +19,8 @@ export class PuzzleCreatorComponent implements OnInit {
     const puzzle = formToServerPuzzle(form, this.setOfPieces);
     this.puzzleApi.createPuzzle(form.value.puzzleId, puzzle).subscribe(object => {
       this.creationMonitor.alert();
+      form.reset();
+      this.setOfPieces = [];
     });
   }
 
