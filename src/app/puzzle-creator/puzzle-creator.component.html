@@ -27,6 +27,12 @@
       </div>
       <input type="text" ngClass="dynamicInput form-control" ngModel #nameField="ngModel" name="{{piece}}{{i}}">
     </div>
+    <div *ngIf="piece === 'newline'" class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">break</span>
+      </div>
+      <input type="text" disabled="true" ngClass="newlineInput">
+    </div>
   </div>
   <button ngClass="btn btn-primary" id="savePuzzle">SAVE</button>
 </form>
