@@ -16,9 +16,8 @@ describe('madlibs-ui create new page', () => {
     const puzzleTitle = 'Static Puzzle';
     page.getPuzzleTitleInput().sendKeys(puzzleTitle);
 
-    page.clickAddText();
     const puzzleContent = 'Some puzzle content';
-    page.getLastStaticInput().sendKeys(puzzleContent);
+    page.addPuzzleTextWithValue(puzzleContent);
 
     page.savePuzzle();
     page.waitForPuzzleSelectorToContain(id);
@@ -36,18 +35,17 @@ describe('madlibs-ui create new page', () => {
   it('should store puzzle given puzzle with text, newline, noun', async() => {
     const id = uuid4().toString();
     page.getPuzzleIdInput().sendKeys(id);
+
     const puzzleTitle = 'Static Puzzle';
     page.getPuzzleTitleInput().sendKeys(puzzleTitle);
 
-    page.clickAddText();
     const puzzleContent = 'Some puzzle content';
-    page.getLastStaticInput().sendKeys(puzzleContent);
+    page.addPuzzleTextWithValue(puzzleContent);
 
     page.clickAddNewline();
 
-    page.clickAddDynamic();
     const dynamicType = 'noun';
-    page.getLastDynamicInput().sendKeys(dynamicType);
+    page.addDynamicWithType(dynamicType);
 
     page.savePuzzle();
     page.waitForPuzzleSelectorToContain(id);
@@ -60,7 +58,7 @@ describe('madlibs-ui create new page', () => {
 
     const placeholders = await page.getAllPuzzlePlaceholders();
     expect(placeholders.length).toEqual(1);
-    expect(placeholders[0]).toEqual('noun');
+    expect(placeholders[0]).toEqual(dynamicType);
 
     expect(page.getAllPuzzleParagraphs().count()).toEqual(2);
   });
@@ -71,9 +69,7 @@ describe('madlibs-ui create new page', () => {
     const puzzleTitle = 'Static Puzzle';
     page.getPuzzleTitleInput().sendKeys(puzzleTitle);
 
-    page.clickAddText();
-    const puzzleContent = 'Some puzzle content';
-    page.getLastStaticInput().sendKeys(puzzleContent);
+    page.addPuzzleTextWithValue('Some puzzle content');
 
     page.savePuzzle();
 
@@ -85,9 +81,8 @@ describe('madlibs-ui create new page', () => {
     const id = uuid4().toString();
     page.getPuzzleIdInput().sendKeys(id);
 
-    page.clickAddText();
     const puzzleContent = 'Some puzzle content';
-    page.getLastStaticInput().sendKeys(puzzleContent);
+    page.addPuzzleTextWithValue(puzzleContent);
 
     page.savePuzzle();
 

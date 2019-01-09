@@ -82,4 +82,14 @@ export class AppPage {
   clickAddDynamic() {
     element(by.css('#createDynamicButton')).click();
   }
+
+  addPuzzleTextWithValue(puzzleContent: string) {
+    this.clickAddText();
+    this.getLastStaticInput().sendKeys(puzzleContent);
+  }
+
+  addDynamicWithType(dynamicType: string) {
+    this.clickAddDynamic();
+    this.getLastDynamicInput().sendKeys(dynamicType);
+  }
 }
