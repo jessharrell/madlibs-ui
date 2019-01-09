@@ -1,22 +1,30 @@
 import {Component, OnInit} from '@angular/core';
 import {PuzzlePiece} from './models/puzzle-piece';
 import {PuzzleAPI} from './services/puzzle-api.service';
+import {PuzzleCreationMonitor} from './services/puzzle-creation-monitor';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
-  providers: [PuzzleAPI],
+  providers: [PuzzleAPI, PuzzleCreationMonitor],
 })
 export class AppComponent implements OnInit {
   selectedPuzzle = 'Select Puzzle';
   puzzles: string[] = [];
+
   title = '';
   puzzleContent: PuzzlePiece[];
-  constructor(private puzzleAPI: PuzzleAPI) {}
+
+  showCreator: boolean;
+
+  constructor(private puzzleAPI: PuzzleAPI, private creationMonitor: PuzzleCreationMonitor) {}
 
   ngOnInit(): void {
     this.puzzleAPI.getPuzzleNames().subscribe(puzzleNames => this.puzzles = puzzleNames);
+    this.creationMonitor.puzzleCreated.subscribe(created => {
+      this.puzzleAPI.getPuzzleNames().subscribe(puzzleNames => this.puzzles = puzzleNames);
+    });
   }
 
   onPuzzleSelection(selectedPuzzle): void {
@@ -24,5 +32,12 @@ export class AppComponent implements OnInit {
       this.title = puzzleResource.title;
       this.puzzleContent = puzzleResource.puzzleContent;
     });
+    this.showCreator = false;
+  }
+
+  createPuzzleTemplate() {
+    this.title = '';
+    this.puzzleContent = [];
+    this.showCreator = true;
   }
 }

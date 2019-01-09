@@ -1,0 +1,38 @@
+<div ngClass="row container-fluid justify-content-around">
+<button ngClass="btn btn-light" id="createTextButton" (click)="addTextArea('static')">Add Text</button>
+<button ngClass="btn btn-light" id="createDynamicButton" (click)="addTextArea('dynamic')">Add Input</button>
+<button ngClass="btn btn-light" id="createNewlineButton" (click)="addTextArea('newline')">Add Break</button>
+</div>
+<form #puzzleCreation="ngForm" (ngSubmit)="savePuzzle(puzzleCreation.form);">
+  <div ngClass="form-group">
+    <label>Puzzle ID</label>
+    <input id="puzzleIdInput" type="text" class="form-control" ngModel
+         #nameField="ngModel" name="puzzleId">
+  </div>
+  <div ngClass="form-group">
+    <label>Puzzle Title</label>
+    <input id="puzzleTitleInput" type="text" class="form-control" ngModel
+         #nameField="ngModel" name="puzzleTitle">
+  </div>
+  <div *ngFor="let piece of setOfPieces; let i = index" ngClass="puzzleInputContainer">
+    <div *ngIf="piece === 'static'" class="form-group input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">text</span>
+      </div>
+      <input type="text" ngClass="staticInput form-control" ngModel #nameField="ngModel" name="{{piece}}{{i}}">
+    </div>
+    <div *ngIf="piece === 'dynamic'" class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">input</span>
+      </div>
+      <input type="text" ngClass="dynamicInput form-control" ngModel #nameField="ngModel" name="{{piece}}{{i}}">
+    </div>
+    <div *ngIf="piece === 'newline'" class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">break</span>
+      </div>
+      <input type="text" disabled="true" ngClass="newlineInput">
+    </div>
+  </div>
+  <button ngClass="btn btn-primary" id="savePuzzle">SAVE</button>
+</form>

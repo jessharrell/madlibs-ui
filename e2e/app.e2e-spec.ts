@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('madlibs-ui puzzle select', () => {
+describe('madlibs-ui initial page', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -17,15 +17,29 @@ describe('madlibs-ui puzzle select', () => {
     expect(page.getAllPuzzlePlaceholders()).toEqual([]);
   });
 
-  it('selecting puzzle should cause puzzle to display', () => {
-    page.selectPuzzleNamed('default');
-    page.waitForPuzzleTitleToBe('Default');
-    expect(page.getPuzzleTitle()).toEqual('Default');
+  it('does not display puzzle creation form before user select create puzzle', () => {
+    expect(page.getAllInputs().count()).toEqual(0);
   });
 
-  it('selecting not the default puzzle should cause other puzzle to display', () => {
-    page.selectPuzzleNamed('seashore');
-    page.waitForPuzzleTitleToBe( 'Sally\'s Shells');
-    expect(page.getPuzzleTitle()).toEqual('Sally\'s Shells');
+  describe('puzzle selection', () => {
+
+    it('selecting puzzle should cause puzzle to display', () => {
+      page.selectPuzzleNamed('default');
+      page.waitForPuzzleTitleToBe('Default');
+      expect(page.getPuzzleTitle()).toEqual('Default');
+    });
+
+    it('selecting not the default puzzle should cause other puzzle to display', () => {
+      page.selectPuzzleNamed('seashore');
+      page.waitForPuzzleTitleToBe('Sally\'s Shells');
+      expect(page.getPuzzleTitle()).toEqual('Sally\'s Shells');
+    });
+  });
+
+  describe('creating new puzzle', () => {
+    it('displays creation template', () => {
+      page.selectCreatePuzzle();
+      expect(page.getPuzzleTitleInput().getText()).toEqual('');
+    });
   });
 });

@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { PuzzleComponent } from './puzzle/puzzle.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { PuzzleCreatorComponent } from './puzzle-creator/puzzle-creator.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PuzzleComponent
+    PuzzleComponent,
+    PuzzleCreatorComponent
   ],
   imports: [
     BrowserModule,

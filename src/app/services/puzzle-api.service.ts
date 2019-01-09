@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {PuzzleResource} from '../models/puzzle-resource';
 import {HttpClient} from '@angular/common/http';
+import {ServerPuzzle} from '../models/server-puzzle';
 
 @Injectable()
 export class PuzzleAPI {
@@ -13,13 +14,12 @@ export class PuzzleAPI {
   }
 
   getPuzzle(puzzleId: string): Observable<PuzzleResource> {
-    return this.http.get<PuzzleResponse>('http://localhost:3000/puzzles/' + puzzleId).map(response => {
+    return this.http.get<ServerPuzzle>('http://localhost:3000/puzzles/' + puzzleId).map(response => {
           return new PuzzleResource(response.name, response.puzzle);
     });
   }
-}
 
-class PuzzleResponse {
-  readonly name: string;
-  readonly puzzle: any[];
+  createPuzzle(puzzleId: string, puzzle: ServerPuzzle): Observable<object> {
+    return this.http.post('http://localhost:3000/puzzles/' + puzzleId, puzzle);
+  }
 }
